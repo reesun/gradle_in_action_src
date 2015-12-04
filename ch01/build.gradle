@@ -1,0 +1,26 @@
+task helloworld << {
+    println 'Hello World!'
+}
+
+task startSession << {
+	chant()
+}
+
+def chant() {
+	ant.echo(message:'Repeat after me ...')
+}
+
+
+3.times {
+	task "yayGradle$it" << {
+		println "Gradle rocks $it"
+	}
+}
+
+
+
+
+
+yayGradle0.dependsOn startSession
+yayGradle2.dependsOn yayGradle0, yayGradle1
+task groupTherapy(dependsOn: yayGradle2)
